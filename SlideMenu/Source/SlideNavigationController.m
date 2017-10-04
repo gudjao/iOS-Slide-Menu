@@ -138,10 +138,6 @@ static SlideNavigationController *singletonInstance;
     if (self.enableShadow)
         self.view.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.view.bounds].CGPath;
     
-    // When menu open we disable user interaction
-    // When rotates we want to make sure that userInteraction is enabled again
-    [self enableTapGestureToCloseMenu:NO];
-    
     if (self.menuNeedsLayout)
     {
         [self updateMenuFrameAndTransformAccordingToOrientation];
@@ -161,6 +157,10 @@ static SlideNavigationController *singletonInstance;
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
 {
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    
+    // When menu open we disable user interaction
+    // When rotates we want to make sure that userInteraction is enabled again
+    [self enableTapGestureToCloseMenu:NO];
     
     self.menuNeedsLayout = YES;
 }
@@ -446,7 +446,7 @@ static SlideNavigationController *singletonInstance;
         } else {
             customButton.action = selector;
             customButton.target = self;
-        }		return customButton;
+        }        return customButton;
     }
     else
     {
@@ -889,3 +889,5 @@ static SlideNavigationController *singletonInstance;
 }
 
 @end
+
+
